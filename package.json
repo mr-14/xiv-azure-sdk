@@ -1,13 +1,13 @@
 {
-  "name": "xiv-erp-sdk",
-  "description": "Provides SDK for ERP functions",
+  "name": "xiv-azure-sdk",
+  "description": "Provides SDK for Azure",
   "version": "0.1.0",
   "main": "index.js",
   "author": "Mr. 14 <suke.shou@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:mr-14/xiv-erp-sdk.git"
+    "url": "git@github.com:mr-14/xiv-azure-sdk.git"
   },
   "dependencies": {
     "xiv-js-sdk": "0.1.0",
