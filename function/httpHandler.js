@@ -1,22 +1,32 @@
-const jwt = require('jsonwebtoken')
+'use strict'
 
-module.exports = tokenValidator => handler => (context, req) => {
-  context.log('Context:', JSON.stringify(context, null, 2))
-  context.log('Request:', JSON.stringify(req, null, 2))
+const HttpError = require('../error/HttpError')
+
+module.exports = ({ tokenValidator }) => handler => (context, req) => {
+  context.log('Request =', JSON.stringify(req, null, 2))
 
   try {
     if (tokenValidator) {
       context.bindings.tokenClaim = tokenValidator(req.headers.token, process.env.tokenKey)
     }
 
-    const resp = (status, body) => {
+    const res = (status, body) => {
       context.log('Response:', JSON.stringify({ status, body }, null, 2))
       context.res = { status, body }
     }
 
-    handler(context, req, resp)
-    context.done()
+    handler(context, req, res)
+    context.done(null, context.res)
   } catch (e) {
-    context.done(e)
+    context.log.error(e)
+
+    const message = e.message || 'error.internal'
+    let status = 500
+
+    if (e instanceof HttpError) {
+      status = e.status || 500
+    }
+    
+    context.done(null, { status, body: { message } })
   }
 }

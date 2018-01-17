@@ -1,13 +1,14 @@
 const jwt = require('jsonwebtoken')
+const HttpError = require('../error/HttpError')
 
-module.exports = (token, tokenKey) => {
+module.exports = tokenKey => token => {
   if (!tokenKey) {
-    throw new Error('auth.tokenKey.missing')
+    throw new HttpError(500, 'auth.tokenKey.missing')
   }
 
   try {
     return jwt.verify(token, tokenKey)
   } catch (e) {
-    throw new Error('auth.token.invalid')
+    throw new HttpError(401, 'auth.token.invalid')
   }
 }
