@@ -2,9 +2,15 @@
   "name": "xiv-erp-sdk",
   "description": "Provides SDK for ERP functions",
   "version": "0.1.0",
-  "private": true,
+  "main": "index.js",
+  "author": "Mr. 14 <suke.shou@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mr-14/xiv-erp-sdk.git"
+  },
   "dependencies": {
-    "jsonwebtoken": "^8.1.0",
-    "moment": "^2.20.1"
+    "xiv-js-sdk": "0.1.0",
+    "jsonwebtoken": "^8.1.0"
   }
 }
