@@ -1,8 +1,7 @@
 {
   "name": "xiv-azure-sdk",
   "description": "Provides SDK for Azure",
-  "version": "0.1.0",
-  "main": "index.js",
+  "version": "0.1.1",
   "author": "Mr. 14 <suke.shou@gmail.com>",
   "license": "MIT",
   "repository": {
