@@ -7,11 +7,11 @@ module.exports = ({ tokenValidator }) => handler => (context, req) => {
 
   try {
     if (tokenValidator) {
-      context.bindings.tokenClaim = tokenValidator(req.headers.token, process.env.tokenKey)
+      context.bindings.tokenClaim = tokenValidator(req.headers.token)
     }
 
     const res = (status, body) => {
-      context.log('Response:', JSON.stringify({ status, body }, null, 2))
+      context.log('Response =', JSON.stringify({ status, body }, null, 2))
       context.res = { status, body }
     }
 
