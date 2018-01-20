@@ -9,7 +9,8 @@
     "url": "git@github.com:mr-14/xiv-azure-sdk.git"
   },
   "dependencies": {
-    "xiv-js-sdk": "0.1.0",
-    "jsonwebtoken": "^8.1.0"
+    "documentdb": "^1.14.2",
+    "jsonwebtoken": "^8.1.0",
+    "xiv-js-sdk": "0.1.0"
   }
 }

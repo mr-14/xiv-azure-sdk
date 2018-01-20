@@ -1,6 +1,7 @@
-function HttpError(status, message, fileName, lineNumber) {
+function HttpError(status, message, fields, fileName, lineNumber) {
   var instance = new Error(message, fileName, lineNumber)
   instance.status = status
+  instance.fields = fields
   Object.setPrototypeOf(instance, Object.getPrototypeOf(this))
   if (Error.captureStackTrace) {
     Error.captureStackTrace(instance, HttpError)
