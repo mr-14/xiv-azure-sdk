@@ -5,11 +5,12 @@ exports.conn = (endPoint, accountKey) => (
 )
 
 exports.dao = (conn, database, collection) => ({
-  get: id => readDocument(conn, database, collection, id),
-  insert: data => createDocument(conn, database, collection, data)
+  insert: data => insert(conn, database, collection, data),
+  findById: id => findById(conn, database, collection, id),
+  findFirst: query => findFirst(conn, database, collection, query),
 })
 
-function readDocument(conn, database, collection, id) {
+function findById(conn, database, collection, id) {
   const documentLink = `dbs/${database}/colls/${collection}/docs/${id}`
   return new Promise((resolve, reject) => {
     conn.readDocument(documentLink, (err, resource) => {
@@ -18,11 +19,20 @@ function readDocument(conn, database, collection, id) {
   })
 }
 
-function createDocument(conn, database, collection, data) {
+function insert(conn, database, collection, data) {
   const documentLink = `dbs/${database}/colls/${collection}`
   return new Promise((resolve, reject) => {
     conn.createDocument(documentLink, data, (err, resource) => {
       err ? reject(err) : resolve(resource)
+    })
+  })
+}
+
+function findFirst(conn, database, collection, query) {
+  const documentLink = `dbs/${database}/colls/${collection}`
+  return new Promise((resolve, reject) => {
+    conn.queryDocuments(documentLink, query).current((err, item) => {
+      err ? reject(err) : resolve(item)
     })
   })
 }
