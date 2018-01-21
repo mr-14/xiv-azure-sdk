@@ -1,6 +1,6 @@
 const HttpError = require('../error/HttpError')
 
-module.exports = ({ tokenValidator }) => handler => (context, req) => {
+module.exports = ({ tokenValidator } = {}) => handler => (context, req) => {
   context.log('Request =', JSON.stringify(req, null, 2))
 
   try {
@@ -31,7 +31,7 @@ function handleError(context, e) {
     context.done(null, {
       status: e.status || 500,
       body: {
-        message: e.message || 'error.internal',
+        message: e.message,
         fields: e.fields
       }
     })
