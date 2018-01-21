@@ -1,14 +1,14 @@
 const HttpError = require('../error/HttpError')
 
-module.exports = ({ tokenValidator } = {}) => handler => (context, req) => {
+module.exports = ({ validateToken } = {}) => handler => (context, req) => {
   context.log('Request =', JSON.stringify(req, null, 2))
 
   try {
-    if (tokenValidator) {
-      context.bindings.tokenClaim = tokenValidator(req.headers.token)
+    if (validateToken) {
+      context.bindings.tokenClaim = validateToken(req.headers.token)
     }
 
-    const res = ({ err, status, body }) => {
+    const res = ({ err, status = 200, body = null }) => {
       if (err) {
         handleError(context, err)
         return
