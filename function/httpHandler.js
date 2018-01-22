@@ -1,4 +1,4 @@
-const HttpError = require('../error/HttpError')
+const HttpError = require('xiv-js-sdk/error/HttpError')
 
 module.exports = ({ validateToken } = {}) => handler => (context, req) => {
   context.log('Request =', JSON.stringify(req, null, 2))
