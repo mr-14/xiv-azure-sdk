@@ -12,6 +12,6 @@
     "documentdb": "^1.14.2"
   },
   "peerDependencies": {
-    "xiv-js-sdk": "0.1.0"
+    "xiv-js-sdk": "^0.1.0"
   }
 }
